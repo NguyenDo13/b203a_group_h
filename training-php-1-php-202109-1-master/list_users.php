@@ -41,10 +41,10 @@ $users = $userModel->getUsers($params);
                         <tr>
                             <th scope="row"><?php echo $user['id']?></th>
                             <td>
-                                <?php echo $user['name']?>
+                                <?php echo $user['user_name']?>
                             </td>
                             <td>
-                                <?php echo $user['fullname']?>
+                                <?php echo $user['first_name'].' '.$user['middle_name'].' '.$user['last_name']?>
                             </td>
                             <td>
                                 <?php echo $user['type']?>
