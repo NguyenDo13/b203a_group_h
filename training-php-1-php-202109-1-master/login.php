@@ -6,25 +6,45 @@ require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
 
-if (!empty($_POST['submit'])) {
-    $users = [
-        'username' => $_POST['username'],
-        'password' => $_POST['password']
-    ];
-    $user = NULL;
-    if ($user = $userModel->auth($users['username'], $users['password'])) {
-        //Login successful
-        $_SESSION['id'] = $user[0]['id'];
+// if (!empty($_POST['submit'])) {
+//     $users = [
+//         'username' => $_POST['username'],
+//         'password' => $_POST['password']
+//     ];
+//     $user = NULL;
+//     if ($user = $userModel->auth($users['username'], $users['password'])) {
+//         //Login successful
+//         $_SESSION['id'] = $user[0]['id'];
 
-        $_SESSION['message'] = 'Login successful';
-        header('location: list_users.php');
-    }else {
-        //Login failed
-        $_SESSION['message'] = 'Login failed';
+//         $_SESSION['message'] = 'Login successful';
+//         header('location: list_users.php');
+//     }else {
+//         //Login failed
+//         $_SESSION['message'] = 'Login failed';
+//     }
+
+// }
+if (isset($_POST['submit'])) {
+    # code...
+    $username = $_POST['username'];
+    $password = $_POST['password'];    
+    $email=$_POST['username'];
+    if (!$username|| !$email ||!$password) {
+        # code...
+        echo "Vui lòng nhập user và password . <a href= 'javascript: history.go(-1)'> Trở về</a>";
+        exit;          
     }
-
+    if ($userModel->auth($username, $password)) {       
+           
+        header('location: list_users.php');       
+    } else  if ($userModel->loginemail($email, $password)) {       
+           
+        header('location: list_users.php');       
+    }  
+    else {      
+        header('location:login.php');       
+    }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
