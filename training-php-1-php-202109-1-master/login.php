@@ -5,25 +5,6 @@ session_start();
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
-
-// if (!empty($_POST['submit'])) {
-//     $users = [
-//         'username' => $_POST['username'],
-//         'password' => $_POST['password']
-//     ];
-//     $user = NULL;
-//     if ($user = $userModel->auth($users['username'], $users['password'])) {
-//         //Login successful
-//         $_SESSION['id'] = $user[0]['id'];
-
-//         $_SESSION['message'] = 'Login successful';
-//         header('location: list_users.php');
-//     }else {
-//         //Login failed
-//         $_SESSION['message'] = 'Login failed';
-//     }
-
-// }
 if (isset($_POST['submit'])) {
     # code...
     $username = $_POST['username'];
