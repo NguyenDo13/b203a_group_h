@@ -5,25 +5,27 @@ session_start();
 require_once 'models/UserModel.php';
 $userModel = new UserModel();
 
-
-if (!empty($_POST['submit'])) {
-    $users = [
-        'username' => $_POST['username'],
-        'password' => $_POST['password']
-    ];
-    $user = NULL;
-    if ($user = $userModel->auth($users['username'], $users['password'])) {
-        //Login successful
-        $_SESSION['id'] = $user[0]['id'];
-
-        $_SESSION['message'] = 'Login successful';
-        header('location: list_users.php');
-    } else {
-        //Login failed
-        $_SESSION['message'] = 'Login failed';
+if (isset($_POST['submit'])) {
+    # code...
+    $username = $_POST['username'];
+    $password = $_POST['password'];    
+    $email=$_POST['username'];
+    if (!$username|| !$email ||!$password) {
+        # code...
+        echo "Vui lòng nhập user và password . <a href= 'javascript: history.go(-1)'> Trở về</a>";
+        exit;          
+    }
+    if ($userModel->auth($username, $password)) {       
+           
+        header('location: list_users.php');       
+    } else  if ($userModel->loginemail($email, $password)) {       
+           
+        header('location: list_users.php');       
+    }  
+    else {      
+        header('location:login.php');       
     }
 }
-
 ?>
 <!DOCTYPE html>
 <html>
@@ -41,7 +43,8 @@ if (!empty($_POST['submit'])) {
             <div class="panel panel-info">
                 <div class="panel-heading">
                     <div class="panel-title">Login</div>
-                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot password?</a></div>
+                    <div style="float:right; font-size: 80%; position: relative; top:-10px"><a href="#">Forgot
+                            password?</a></div>
                 </div>
 
                 <div style="padding-top:30px" class="panel-body">
@@ -49,12 +52,14 @@ if (!empty($_POST['submit'])) {
 
                         <div class="margin-bottom-25 input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
-                            <input id="login-username" type="text" class="form-control" name="username" value="" placeholder="username or email">
+                            <input id="login-username" type="text" class="form-control" name="username" value=""
+                                placeholder="username or email">
                         </div>
 
                         <div class="margin-bottom-25 input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
-                            <input id="login-password" type="password" class="form-control" name="password" placeholder="password">
+                            <input id="login-password" type="password" class="form-control" name="password"
+                                placeholder="password">
                         </div>
 
                         <div class="margin-bottom-25">
@@ -65,7 +70,8 @@ if (!empty($_POST['submit'])) {
                         <div class="margin-bottom-25 input-group">
                             <!-- Button -->
                             <div class="col-sm-12 controls">
-                                <button type="submit" name="submit" value="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" name="submit" value="submit"
+                                    class="btn btn-primary">Submit</button>
                                 <a id="btn-fblogin" href="#" class="btn btn-primary">Login with Facebook</a>
                             </div>
                         </div>
