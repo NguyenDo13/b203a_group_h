@@ -2,10 +2,10 @@
 -- version 5.1.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Sep 23, 2021 at 08:23 AM
--- Server version: 10.4.19-MariaDB-log
--- PHP Version: 8.0.7
+-- Máy chủ: 127.0.0.1:3306
+-- Thời gian đã tạo: Th4 19, 2022 lúc 02:05 PM
+-- Phiên bản máy phục vụ: 5.7.36
+-- Phiên bản PHP: 7.4.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,54 +18,37 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `app_web1`
+-- Cơ sở dữ liệu: `app_web1`
 --
-CREATE DATABASE IF NOT EXISTS `app_web1` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
-USE `app_web1`;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `users`
+-- Cấu trúc bảng cho bảng `users`
 --
 
 DROP TABLE IF EXISTS `users`;
-CREATE TABLE `users` (
-  `id` int(11) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `fullname` varchar(100) NOT NULL,
+CREATE TABLE IF NOT EXISTS `users` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` text NOT NULL,
+  `fullname` varchar(100) DEFAULT NULL,
   `email` varchar(100) NOT NULL,
-  `type` varchar(100) NOT NULL,
-  `password` varchar(250) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+  `phone` varchar(10) DEFAULT NULL,
+  `sex` varchar(20) DEFAULT NULL,
+  `lastname` varchar(50) DEFAULT NULL,
+  `type` varchar(100) DEFAULT NULL,
+  `password` varchar(250) DEFAULT NULL,
+  `cost` varchar(100) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `users`
+-- Đang đổ dữ liệu cho bảng `users`
 --
 
-INSERT INTO `users` (`id`, `name`, `fullname`, `email`, `type`, `password`) VALUES
-(1, 'admin', 'Admin', 'admin1@gmail.com', 'admin', 'd41d8cd98f00b204e9800998ecf8427e'),
-(2, 'user1', 'User1', 'user1@gmail.com', 'user', '24c9e15e52afc47c225b757e7bee1f9d');
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `users`
---
-ALTER TABLE `users`
-  ADD PRIMARY KEY (`id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `users`
---
-ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+INSERT INTO `users` (`id`, `name`, `fullname`, `email`, `phone`, `sex`, `lastname`, `type`, `password`, `cost`) VALUES
+(3, 'hackerasfasf', '', '', '', '', '', '', '6a204bd89f3c8348afd5c77c717a097a', NULL),
+(5, 'an1234', NULL, 'an1234@gmail.com', NULL, NULL, NULL, NULL, '81dc9bdb52d04dc20036dbd8313ed055', NULL);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
