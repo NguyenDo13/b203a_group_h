@@ -54,7 +54,17 @@ $users = $userModel->getUsers($params);
                         <?php echo $user['lastname']?>
                     </td>
                     <td>
-                        <?php echo $user['sex']?>
+                        <?php 
+                        if (!empty($user['sex'])){
+                            if($user['sex'] == '1'){
+                                echo 'Male';
+                            }else if($user['sex'] == '2'){
+                                echo 'Female';
+                            }else{
+                                echo 'other';
+                            }
+                        } 
+                        ?>
                     </td>
                     <td>
                         <?php echo $user['type']?>

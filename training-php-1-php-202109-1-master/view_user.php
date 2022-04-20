@@ -46,31 +46,41 @@ if (!empty($_POST['submit'])) {
             </div>
             <div class="form-group">
                 <label for="password">Fullname:</label>&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['fullname'] ?></span>
+                <span><?php if (!empty($user[0]['fullname'])) echo $user[0]['fullname'] ?></span>
             </div>
             <div class="form-group">
                 <label for="name">Lastname:</label>&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['lastname'] ?></span>
+                <span><?php if (!empty($user[0]['lastname'])) echo $user[0]['lastname'] ?></span>
             </div>
             <div style="display: flex;" class="form-group">
                 <label for="password">Password:</label>&emsp;&emsp;
-                <span ><?php if (!empty($user[0]['name'])) echo $user[0]['password'] ?></span>
+                <span ><?php if (!empty($user[0]['password'])) echo $user[0]['password'] ?></span>
             </div>
             <div class="form-group">
                 <label for="name">Phone:</label>&emsp;&emsp;&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['phone'] ?></span>
+                <span><?php if (!empty($user[0]['phone'])) echo $user[0]['phone'] ?></span>
             </div>
             <div class="form-group">
                 <label for="name">Giới Tính:</label>&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['sex'] ?></span>
+                <span><?php
+                if (!empty($user[0]['sex'])){
+                    if($user[0]['sex'] == '1'){
+                        echo 'Male';
+                    }else if($user[0]['sex'] == '2'){
+                        echo 'Female';
+                    }else{
+                        echo 'other';
+                    }
+                } 
+                ?></span>
             </div>
             <div class="form-group">
                 <label for="name">Email:</label>&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['email'] ?></span>
+                <span><?php if (!empty($user[0]['email'])) echo $user[0]['email'] ?></span>
             </div>
             <div class="form-group">
                 <label for="name">Tài khoản:</label>&emsp;&emsp;
-                <span><?php if (!empty($user[0]['name'])) echo $user[0]['cost'] ?></span>
+                <span><?php if (!empty($user[0]['cost'])) echo $user[0]['cost'] ?></span>
             </div>
         </form>
         <?php } else { ?>
